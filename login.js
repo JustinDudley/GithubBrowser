@@ -38,7 +38,7 @@ export class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#b9e2f5',
+    backgroundColor: '#edf7fc',
     flex: 1, // so that the div takes up space
     paddingTop: 40,
     alignItems: 'center',
