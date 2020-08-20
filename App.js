@@ -6,10 +6,6 @@ const App: () => React$Node = () => {
   return (
     <Fragment>
       <Login />
-      <Login />
-      <Login />
-      <Login />
-      <Login />
     </Fragment>
   );
 };
