@@ -13,7 +13,7 @@ export class Login extends React.Component {
             style={styles.logo}
             source={require('./myImages/octocat.png')}
           />
-          {/* <Text style={{color: 'red'}}>Hello there Justin!</Text> */}
+          <Text style={styles.heading}>Github browser</Text>
         </View>
       </Fragment>
     );
@@ -30,5 +30,9 @@ const styles = StyleSheet.create({
   logo: {
     width: 66,
     height: 55,
+  },
+  heading: {
+    fontSize: 30,
+    marginTop: 10,
   },
 });
