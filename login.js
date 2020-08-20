@@ -6,6 +6,6 @@ import {Text} from 'react-native'; // see older syntax below
 
 export class Login extends React.Component {
   render() {
-    return <Text style={{color: 'green'}}>Hello Justin!</Text>;
+    return <Text style={{color: 'green'}}>Hello there Justin!</Text>;
   }
 }
