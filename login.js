@@ -48,7 +48,7 @@ export class Login extends React.Component {
 
     fetch('https://api.github.com/user', {
       headers: {
-        Authorization: 'token my_personal_access_token',
+        Authorization: 'token ' + this.state.token,
         // Authorization: 'Basic ' + encodedAuth,  //the old way, with base64-encoded username and password
       },
     })
@@ -71,15 +71,21 @@ export class Login extends React.Component {
           />
           <Text style={styles.heading}>Github browser</Text>
           <TextInput
-            style={styles.input}
-            placeholder="Github username"
+            style={styles.inputDeprecated}
+            placeholder="Github username- deprecated, no functionality"
             onChangeText={(text) => this.setState({username: text})}
           />
           <TextInput
-            style={styles.input}
-            placeholder="Github password"
+            style={styles.inputDeprecated}
+            placeholder="Github password- deprecated, no functionality"
             secureTextEntry="true"
             onChangeText={(text) => this.setState({password: text})}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Github personal access token (Homer)"
+            secureTextEntry="true"
+            onChangeText={(text) => this.setState({token: text})}
           />
           <TouchableHighlight style={styles.button}>
             <Text
@@ -120,7 +126,16 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 10,
     padding: 4,
-    fontSize: 18,
+    fontSize: 20,
+    borderWidth: 1,
+    borderColor: '#48bbec',
+    alignSelf: 'stretch',
+  },
+  inputDeprecated: {
+    height: 45,
+    marginTop: 10,
+    padding: 4,
+    fontSize: 14,
     borderWidth: 1,
     borderColor: '#48bbec',
     alignSelf: 'stretch',
