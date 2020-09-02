@@ -9,9 +9,20 @@ import {
   StyleSheet,
   TextInput,
   TouchableHighlight,
+  ActivityIndicator,
 } from 'react-native'; // see older syntax below
 
 export class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showProgress: false};
+  }
+
+  onLoginPressed() {
+    console.log('Attempting to log in with username ' + this.state.username);
+    this.setState({showProgress: true});
+  }
+
   render() {
     return (
       <Fragment>
@@ -21,15 +32,30 @@ export class Login extends React.Component {
             source={require('./myImages/octocat.png')}
           />
           <Text style={styles.heading}>Github browser</Text>
-          <TextInput style={styles.input} placeholder="Github username" />
+          <TextInput
+            style={styles.input}
+            placeholder="Github username"
+            onChangeText={(text) => this.setState({username: text})}
+          />
           <TextInput
             style={styles.input}
             placeholder="Github password"
             secureTextEntry="true"
+            onChangeText={(text) => this.setState({password: text})}
           />
           <TouchableHighlight style={styles.button}>
-            <Text style={styles.buttonText}>Log in</Text>
+            <Text
+              onPress={this.onLoginPressed.bind(this)} //must use bind function, so points to component, and not its own scope
+              style={styles.buttonText}>
+              Log in
+            </Text>
           </TouchableHighlight>
+          <ActivityIndicator
+            animating={this.state.showProgress}
+            size="large"
+            color="purple"
+            style={styles.loader}
+          />
         </View>
       </Fragment>
     );
@@ -72,5 +98,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#fff',
     alignSelf: 'center',
+  },
+  loader: {
+    marginTop: 30,
   },
 });
