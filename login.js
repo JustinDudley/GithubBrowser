@@ -24,6 +24,9 @@ export class Login extends React.Component {
     console.log('Attempting to log in with username ' + this.state.username);
     this.setState({showProgress: true});
 
+    //
+    //
+    //
     // simple get request:
     // fetch('https://api.github.com/search/repositories?q=react')
     //   .then((resp) => {
@@ -34,22 +37,24 @@ export class Login extends React.Component {
     //     this.setState({showProgress: false});
     //   });
 
-    //
+    // buffer POC:
     // const buff = new buffer.Buffer('hello');
     // console.log(buff.toString());
     // console.log(buff.toString('base64'));
-
     //
-    // I am not using this buffer object anymore. username and password are deprecated. I am using a personal access token instead. It didn't need to be base64-encoded, so I didn't do that.
+    // I am not using this buffer object anymore. Since Hendrik made lesson, username and password have become deprecated. I am using a personal access TOKEN instead. It didn't need to be base64-encoded, so I didn't do that.
     const buff = new buffer.Buffer(
       this.state.username + ':' + this.state.password,
     );
     const encodedAuth = buff.toString('base64');
+    //
+    //
+    //
 
     fetch('https://api.github.com/user', {
       headers: {
         Authorization: 'token ' + this.state.token,
-        // Authorization: 'Basic ' + encodedAuth,  //the old way, with base64-encoded username and password
+        // Authorization: 'Basic ' + encodedAuth,  //Hendrik's way, with base64-encoded username and password. Worked, but will cease to function in November 2020
       },
     })
       .then((resp) => {
