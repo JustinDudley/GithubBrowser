@@ -21,6 +21,15 @@ export class Login extends React.Component {
   onLoginPressed() {
     console.log('Attempting to log in with username ' + this.state.username);
     this.setState({showProgress: true});
+
+    fetch('https://api.github.com/search/repositories?q=react')
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((results) => {
+        console.log(results);
+        this.setState({showProgress: false});
+      });
   }
 
   render() {
