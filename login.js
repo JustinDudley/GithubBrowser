@@ -46,7 +46,8 @@ export class Login extends React.Component {
 
     fetch('https://api.github.com/user', {
       headers: {
-        Authorization: 'Basic ' + encodedAuth,
+        Authorization: 'token my_personal_access_token',
+        // Authorization: 'Basic ' + encodedAuth,
       },
     })
       .then((resp) => {
