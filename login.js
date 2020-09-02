@@ -39,6 +39,8 @@ export class Login extends React.Component {
     // console.log(buff.toString());
     // console.log(buff.toString('base64'));
 
+    //
+    // I am not using this buffer object anymore. username and password are deprecated. I am using a personal access token instead. It didn't need to be base64-encoded, so I didn't do that.
     const buff = new buffer.Buffer(
       this.state.username + ':' + this.state.password,
     );
@@ -47,7 +49,7 @@ export class Login extends React.Component {
     fetch('https://api.github.com/user', {
       headers: {
         Authorization: 'token my_personal_access_token',
-        // Authorization: 'Basic ' + encodedAuth,
+        // Authorization: 'Basic ' + encodedAuth,  //the old way, with base64-encoded username and password
       },
     })
       .then((resp) => {
