@@ -12,6 +12,8 @@ import {
   ActivityIndicator,
 } from 'react-native'; // see older syntax below
 
+import buffer from 'buffer';
+
 export class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,31 @@ export class Login extends React.Component {
     console.log('Attempting to log in with username ' + this.state.username);
     this.setState({showProgress: true});
 
-    fetch('https://api.github.com/search/repositories?q=react')
+    // simple get request:
+    // fetch('https://api.github.com/search/repositories?q=react')
+    //   .then((resp) => {
+    //     return resp.json();
+    //   })
+    //   .then((results) => {
+    //     console.log(results);
+    //     this.setState({showProgress: false});
+    //   });
+
+    //
+    // const buff = new buffer.Buffer('hello');
+    // console.log(buff.toString());
+    // console.log(buff.toString('base64'));
+
+    const buff = new buffer.Buffer(
+      this.state.username + ':' + this.state.password,
+    );
+    const encodedAuth = buff.toString('base64');
+
+    fetch('https://api.github.com/user', {
+      headers: {
+        Authorization: 'Basic ' + encodedAuth,
+      },
+    })
       .then((resp) => {
         return resp.json();
       })
